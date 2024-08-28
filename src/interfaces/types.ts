@@ -36,7 +36,10 @@ export interface orderQueueMsgTypes {
 
 export interface notificationMsgTypes {
     userID: string,
-    message: string
+    paymentID?: string,
+    orderID?: string,
+    message: string,
+    status?: boolean
 }
 
 export interface paymentSchemaTypes {

@@ -38,6 +38,9 @@ async function proceedToPay (msg:any) {
         }
         const notificationMsg:notificationMsgTypes = {
             userID,
+            orderID,
+            paymentID,
+            status: status === 'success' ? true : false,
             message: status === 'success' ? `${notifications.PAYMENT_SUCCESS}${orderID}` : `${notifications.PAYMENT_FAILED}${orderID}`
         }
 
