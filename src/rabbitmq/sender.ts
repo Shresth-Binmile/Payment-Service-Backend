@@ -2,12 +2,12 @@ import amqp from 'amqplib/callback_api'
 import { notificationMsgTypes, orderQueueMsgTypes, paymentQueueMsgTypes } from '../interfaces/types';
 import { bindingKeys } from '../utils/enums';
 
-export default function connectRabbitMQ (message:paymentQueueMsgTypes, bindingKey:string, notificationMsg:notificationMsgTypes) {
-    amqp.connect('amqp://localhost', function(error0, connection) {
+export default async function connectRabbitMQ (message:paymentQueueMsgTypes, bindingKey:string, notificationMsg:notificationMsgTypes) {
+    amqp.connect('amqp://localhost',async function(error0, connection) {
         if (error0) {
             throw error0;
         }
-        connection.createChannel(function(error1, channel) {
+        connection.createChannel(async function(error1, channel) {
             if (error1) {
                 throw error1;
             }
@@ -35,9 +35,9 @@ export default function connectRabbitMQ (message:paymentQueueMsgTypes, bindingKe
             console.log(" [x] Sent %s", msg);
             console.log(" [x] Sent %s", notificationMsg);
         });
-        setTimeout(function() {
-            connection.close();
-            process.exit(0);
-        }, 500);
+        // setTimeout(function() {
+        //     connection.close();
+        //     process.exit(0);
+        // }, 500);
     });
 }

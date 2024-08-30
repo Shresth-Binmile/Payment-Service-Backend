@@ -3,12 +3,12 @@ import { bindingKeys } from '../utils/enums';
 import proceedToPay from '../controllers/proceedToPay';
 import messages from '../utils/messages';
 
-function recieveFromRabbitMQ () {
-    amqp.connect('amqp://localhost', function(error0, connection) {
+async function recieveFromRabbitMQ () {
+    amqp.connect('amqp://localhost', async function(error0, connection) {
         if (error0) {
             throw error0;
         }
-        connection.createChannel(function(error1, channel) {
+        connection.createChannel(async function(error1, channel) {
             if (error1) {
                 throw error1;
             }
